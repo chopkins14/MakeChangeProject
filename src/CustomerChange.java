@@ -5,60 +5,55 @@ public class CustomerChange {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		double cost = 0.00;
-		double cash = 0.00;
-		double dollars = 0.00;
+		int pricePennies = 0;
+		int cashPennies = 0;
 
 		System.out.println("Price: ");
-		cost = scanner.nextDouble();
+		pricePennies = (int) (scanner.nextDouble() * 100);
 
 		System.out.println("Cash: ");
-		cash = scanner.nextDouble();
+		cashPennies = (int) (scanner.nextDouble() * 100);
 
-		if (cash < cost) {
+		if (cashPennies < pricePennies) {
 			System.out.println("Not enough cash. Goodbye.");
-		}
-
-		else if (cash > cost) {
-			dollars = cash - cost;
+		} else if (cashPennies > pricePennies) {
+			int change = cashPennies - pricePennies;
 			System.out.println("\nChange: \n");
-			if ((int) dollars / 20 > 0) {
-				System.out.println("Twenties: " + (int) dollars / 20);
-				dollars %= 20;
+			if (change % 2000 >= 0) {
+				System.out.println("Twenties: " + change / 2000);
+				change %= 2000;
 			}
-
-			if ((int) dollars / 10 > 0) {
-				System.out.println("Tens: " + (int) dollars / 10);
-				dollars %= 10;
+			if (change % 1000 >= 0) {
+				System.out.println("Tens: " + change / 1000);
+				change %= 1000;
 			}
-			if ((int) dollars / 5 > 0) {
-				System.out.println("Fives: " + (int) dollars / 5);
-				dollars %= 5;
+			if (change % 500 >= 0) {
+				System.out.println("Fives: " + change / 500);
+				change %= 500;
 			}
-			if ((int) dollars / 1 > 0) {
-				System.out.println("Ones: " + (int) dollars / 1);
-				dollars %= 1;
-				dollars *= 100;
+			if (change % 100 >= 0) {
+				System.out.println("Ones: " + change / 100);
+				change %= 100;
 			}
-			if ((int) dollars / 25 > 0) {
-				System.out.println("Quarters: " + (int) dollars / 25);
-				dollars %= 25;
+			if (change % 25 >= 0) {
+				System.out.println("Quarters: " + change / 25);
+				change %= 25;
 			}
-			if ((int) dollars / 10 > 0) {
-				System.out.println("Dimes: " + (int) dollars / 10);
-				dollars %= 10;
+			if (change % 10 >= 0) {
+				System.out.println("Dimes: " + change / 10);
+				change %= 10;
 			}
-			if ((int) dollars / 5 > 0) {
-				System.out.println("Nickels: " + (int) dollars / 5);
+			if (change % 5 >= 0) {
+				System.out.println("Nickels: " + change / 5);
+				change %= 5;
 			}
-			if ((int) dollars / 1 > 0) {
-				System.out.println("Pennies: " + (int) dollars / 1);
+			if (change % 1 >= 0) {
+				System.out.println("Pennies: " + change / 1);
+				change %= 1;
 			}
-
-		} else if (cash == cost) {
+		} else if (cashPennies == pricePennies) {
 			System.out.println("Thank you. Goodbye.");
 		}
 		scanner.close();
 	}
-
 }
